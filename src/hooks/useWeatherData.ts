@@ -19,7 +19,7 @@ export function useWeatherData(city: string, unit: Unit): WeatherHookResult {
     setLoading(true);
     setError(null);
 
-    fetchWeatherData(city, unit)
+    fetchWeatherData(city)
       .then((result) => {
         if (isMounted) {
           setData(result);

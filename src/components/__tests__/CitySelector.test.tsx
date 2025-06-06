@@ -7,7 +7,7 @@ jest.useFakeTimers();
 test("filters cities based on input", async () => {
   render(
     <CitySelector
-      cities={["Tashkent", "Samarkand", "Bukhara"]}
+      cities={["London", "New York", "Tokyo", "Sydney", "Cairo"]}
       selectedCity=""
       onCityChange={() => {}}
     />

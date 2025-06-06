@@ -112,16 +112,12 @@ function extractChartPoints(list: WeatherPoint[]): ChartPoint[] {
   }));
 }
 
-export async function fetchWeatherData(
-  city: string,
-  unit: Unit
-): Promise<WeatherData> {
+export async function fetchWeatherData(city: string): Promise<WeatherData> {
   const allowedCities = ["London", "New York", "Tokyo", "Sydney", "Cairo"];
   if (!allowedCities.includes(city)) {
     throw new Error("City not supported in mock API.");
   }
 
-  // Simulate network delay
   await new Promise((res) => setTimeout(res, 500));
 
   const list = generateMockForecast(city);

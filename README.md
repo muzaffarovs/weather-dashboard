@@ -21,7 +21,9 @@ A standalone React application that displays and analyzes weather data across mu
 
 ## Demo
 
-_Add screenshots or GIFs here_
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
 
 ---
 

@@ -50,9 +50,11 @@ export const WeatherWidget: React.FC = () => {
     <div className="weather-widget" style={{ maxWidth: 800, margin: "0 auto" }}>
       <header className="widget-header">
         <CitySelector
+          cities={["London", "New York", "Tokyo", "Sydney", "Cairo"]}
           selectedCity={state.city}
           onCityChange={handleCityChange}
         />
+
         <button onClick={toggleTheme} className="theme-toggle">
           {theme === "light" ? "🌙" : "☀️"}
         </button>
