@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { debounce } from "../utils/debounce";
 
 interface CitySelectorProps {
+  cities: string[];
   selectedCity: string;
   onCityChange: (city: string) => void;
 }
 
-const cities = ["London", "New York", "Tokyo", "Sydney", "Cairo"];
-
 export const CitySelector: React.FC<CitySelectorProps> = ({
+  cities,
   selectedCity,
   onCityChange,
 }) => {
@@ -24,7 +24,7 @@ export const CitySelector: React.FC<CitySelectorProps> = ({
     }, 300);
 
     handleSearch(searchTerm);
-  }, [searchTerm]);
+  }, [searchTerm, cities]);
 
   return (
     <div className="city-selector">

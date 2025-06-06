@@ -1,6 +1,6 @@
 import React from "react";
 
-interface WeatherData {
+export interface WeatherData {
   city: string;
   description: string;
   icon: string;

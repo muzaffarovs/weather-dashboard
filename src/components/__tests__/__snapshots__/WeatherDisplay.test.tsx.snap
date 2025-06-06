@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WeatherDisplay renders correctly and matches snapshot 1`] = `
+<div>
+  <div
+    class="weather-display"
+  >
+    <h2
+      class="city-name"
+    >
+      London
+    </h2>
+    <div
+      class="weather-main"
+    >
+      <img
+        alt="Partly cloudy"
+        class="weather-icon"
+        src="https://openweathermap.org/img/wn/03d@2x.png"
+      />
+      <div
+        class="weather-temp"
+      >
+        <h1>
+          21
+          °
+          C
+        </h1>
+        <p>
+          Partly cloudy
+        </p>
+      </div>
+    </div>
+    <div
+      class="weather-details"
+    >
+      <p>
+        Feels like: 
+        20
+        °
+        C
+      </p>
+      <p>
+        Humidity: 
+        60
+        %
+      </p>
+      <p>
+        Wind: 
+        5.2
+         m/s
+      </p>
+    </div>
+  </div>
+</div>
+`;

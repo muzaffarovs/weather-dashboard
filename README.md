@@ -1,55 +1,125 @@
-# React + TypeScript + Vite
+# Weather Dashboard Widget
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A standalone React application that displays and analyzes weather data across multiple cities. Demonstrates component architecture, state management, and data visualization using OpenWeatherMap API.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Select cities (London, New York, Tokyo, Sydney, Cairo) with search/filter
+- Current weather display with icons and detailed info
+- 5-day forecast displayed as cards
+- Temperature visualization via custom SVG charts (no chart libraries)
+- Configurable settings panel (units, refresh rate, display options)
+- Dark/light mode with smooth theme toggle
+- Tab system to switch between Current Weather, Forecast, and Statistics views
+- Error handling with ErrorBoundary component
+- Custom hooks and reducer pattern for state management
+- Debounce and throttle utilities for optimal API calls
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Demo
+
+_Add screenshots or GIFs here_
+
+---
+
+## Installation
+
+1. Clone the repo:
+
+   ```bash
+   git clone https://github.com/muzaffarovs/weather-dashboard-widget.git
+   cd weather-dashboard-widget
+
+   ```
+
+2. Install dependencies:
+
+```
+ npm install
+ # or
+ yarn install
+
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3. Obtain an OpenWeatherMap API key:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+   Sign up at OpenWeatherMap and get a free API key.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
-# weather-dashboard
+4. Create .env file in project root with your API key:
+
+   REACT_APP_OPENWEATHER_API_KEY=your_api_key_here
+
+# RUNNING THE APP
+
+    npm start
+    # or
+    yarn start
+
+    The app will run at http://localhost:5173/.
+
+# TESTING
+
+Run unit tests with:
+
+    npm test
+    # or
+    yarn test
+
+## Tests include:
+
+    Custom hook useWeatherData
+    Temperature conversion functions
+    Debounce/throttle utilities
+    Snapshot tests for UI components
+
+# PROJECT STRUCTURE
+
+        src/
+    ├── components/         # React components
+    ├── hooks/              # Custom React hooks
+    ├── reducers/           # Reducer logic and state management
+    ├── utils/              # Utility functions (debounce, throttle, data transforms)
+    ├── styles/             # CSS/SCSS files
+    ├── App.tsx             # Main app component
+    └── index.tsx           # Entry point
+
+# COMPONENT OVERVIEW
+
+    WeatherWidget: Main container managing tabs and overall state
+    CitySelector: Searchable dropdown for city selection
+    WeatherDisplay: Shows current weather info with icons
+    ForecastList: Displays 5-day forecast cards
+    DataVisualization: Custom SVG temperature chart
+    SettingsPanel: User-configurable settings (units, refresh rate)
+    ErrorBoundary: Catches and displays errors gracefully
+
+# STATE MANAGEMENT
+
+    useWeatherData custom hook for fetching and transforming weather data
+    Reducer pattern with actions: FETCH_WEATHER, CHANGE_CITY, TOGGLE_UNIT, SET_ERROR, CLEAR_ERROR
+    Theme context for dark/light mode toggling
+
+# PERFORMANCE & UTILITIES
+
+    Throttling of API calls to max 1 per 5 seconds
+    Debounced city search input (300ms delay)
+    Data transformations for temperature conversions, daily averages, min/max values
+
+# STYLING
+
+    Responsive design: fixed 800px width on desktop, fluid layout on mobile
+    Dark/light mode with specific color palette:
+      -> Light: #f8f9fa (background), #212529 (text), #0d6efd (accent)
+      -> Dark: #212529 (background), #f8f9fa (text), #0d6efd (accent)
+    Smooth CSS transitions on city/tab changes
+
+# CONTRIBUTING
+
+    Feel free to open issues or submit pull requests. Please follow standard best practices for code style and testing.
+
+# LICENCE
+
+    MIT License © RAJAB

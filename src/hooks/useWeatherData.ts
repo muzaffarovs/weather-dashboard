@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { fetchWeatherData } from "../api/mockWeatherService";
 import type { Unit } from "../api/mockWeatherService";
+import type { WeatherData } from "../components/WeatherDisplay";
 
 interface WeatherHookResult {
-  data: any;
+  data: WeatherData;
   loading: boolean;
   error: string | null;
 }

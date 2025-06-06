@@ -12,7 +12,7 @@ export const initialState: State = {
   error: null,
 };
 
-type Action =
+export type Action =
   | { type: "FETCH_WEATHER"; payload: any }
   | { type: "CHANGE_CITY"; payload: string }
   | { type: "TOGGLE_UNIT" }

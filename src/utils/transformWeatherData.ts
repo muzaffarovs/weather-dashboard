@@ -40,11 +40,11 @@ export function transformWeatherData(
   };
 }
 
-function convertTemp(
+export function convertTemp(
   temp: number,
   unit: "metric" | "imperial",
   inputUnit: "kelvin" | "metric" | "imperial"
-) {
+): number {
   if (inputUnit === "kelvin") {
     const celsius = temp - 273.15;
     return unit === "metric" ? celsius : (celsius * 9) / 5 + 32;
