@@ -40,7 +40,7 @@ export const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
           Feels like: {Math.round(data.feelsLike)}°{unit}
         </p>
         <p>Humidity: {data.humidity}%</p>
-        <p>Wind: {data.wind} m/s</p>
+        <p>Wind: {Math.round(data.wind)} m/s</p>
       </div>
     </div>
   );

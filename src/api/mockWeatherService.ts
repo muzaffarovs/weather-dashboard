@@ -112,27 +112,76 @@ function extractChartPoints(list: WeatherPoint[]): ChartPoint[] {
   }));
 }
 
-export async function fetchWeatherData(city: string): Promise<WeatherData> {
+export async function fetchWeatherData(
+  city: string,
+  unit?: Unit
+): Promise<WeatherData> {
   const allowedCities = ["London", "New York", "Tokyo", "Sydney", "Cairo"];
   if (!allowedCities.includes(city)) {
     throw new Error("City not supported in mock API.");
   }
 
-  await new Promise((res) => setTimeout(res, 500));
+  const API_KEY = import.meta.env.VITE_API_KEY;
+  const url = `https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(
+    city
+  )}&units=${unit}&appid=${API_KEY}`;
 
-  const list = generateMockForecast(city);
-  const current = list[0];
+  try {
+    if (!API_KEY) throw new Error("API key not found");
 
-  return {
-    current: {
-      temp: current.main.temp,
-      feels_like: current.main.feels_like,
-      humidity: current.main.humidity,
-      wind: current.wind.speed,
-      icon: current.weather[0].icon,
-      description: current.weather[0].description,
-    },
-    forecast: getFiveDayForecast(list),
-    stats: extractChartPoints(list),
-  };
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("Failed to fetch real API");
+
+    const data = await res.json();
+
+    const list: WeatherPoint[] = data.list.map((item: any) => ({
+      dt: item.dt * 1000,
+      main: {
+        temp: item.main.temp,
+        feels_like: item.main.feels_like,
+        temp_min: item.main.temp_min,
+        temp_max: item.main.temp_max,
+        humidity: item.main.humidity,
+      },
+      weather: item.weather,
+      wind: {
+        speed: item.wind.speed,
+      },
+    }));
+
+    const current = list[0];
+
+    return {
+      current: {
+        temp: current.main.temp,
+        feels_like: current.main.feels_like,
+        humidity: current.main.humidity,
+        wind: current.wind.speed,
+        icon: current.weather[0].icon,
+        description: current.weather[0].description,
+      },
+      forecast: getFiveDayForecast(list),
+      stats: extractChartPoints(list),
+    };
+  } catch (err) {
+    console.warn("⚠️ Falling back to mock data:", err);
+
+    // fallback to mock data
+    await new Promise((res) => setTimeout(res, 500));
+    const list = generateMockForecast(city);
+    const current = list[0];
+
+    return {
+      current: {
+        temp: current.main.temp,
+        feels_like: current.main.feels_like,
+        humidity: current.main.humidity,
+        wind: current.wind.speed,
+        icon: current.weather[0].icon,
+        description: current.weather[0].description,
+      },
+      forecast: getFiveDayForecast(list),
+      stats: extractChartPoints(list),
+    };
+  }
 }

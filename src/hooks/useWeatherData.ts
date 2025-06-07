@@ -9,7 +9,7 @@ interface WeatherHookResult {
   error: string | null;
 }
 
-export function useWeatherData(city: string, unit: Unit): WeatherHookResult {
+export const useWeatherData = (city: string, unit: Unit): WeatherHookResult => {
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -19,7 +19,7 @@ export function useWeatherData(city: string, unit: Unit): WeatherHookResult {
     setLoading(true);
     setError(null);
 
-    fetchWeatherData(city)
+    fetchWeatherData(city, unit)
       .then((result) => {
         if (isMounted) {
           setData(result);
@@ -42,4 +42,4 @@ export function useWeatherData(city: string, unit: Unit): WeatherHookResult {
   }, [city, unit]);
 
   return { data, loading, error };
-}
+};

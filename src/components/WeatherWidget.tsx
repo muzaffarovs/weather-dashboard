@@ -8,19 +8,34 @@ import { DataVisualization } from "./DataVisualization";
 import { SettingsPanel } from "./SettingsPanel";
 import { useTheme } from "../context/ThemeContext";
 
+type Settings = {
+  unit: "C" | "F";
+  refreshRate: number;
+  showForecast: boolean;
+  showChart: boolean;
+};
+
 export const WeatherWidget: React.FC = () => {
   const [state, dispatch] = useReducer(weatherReducer, initialState);
   const [tab, setTab] = useState<"current" | "forecast" | "stats">("current");
 
-  const [settings, setSettings] = useState({
-    unit: "C" as "C" | "F",
+  const [settings, setSettings] = useState<Settings>({
+    unit: "C",
     refreshRate: 10,
     showForecast: true,
     showChart: true,
   });
 
   const { theme, toggleTheme } = useTheme();
-  const { data, error, loading } = useWeatherData(state.city, state.unit);
+  const unitMap = { C: "metric", F: "imperial" } as const;
+  const { data, error, loading } = useWeatherData(
+    state.city,
+    unitMap[settings.unit]
+  );
+
+  useEffect(() => {
+    document.body.setAttribute("data-theme", theme);
+  }, [theme]);
 
   useEffect(() => {
     if (data) dispatch({ type: "FETCH_WEATHER", payload: data });
@@ -41,10 +56,6 @@ export const WeatherWidget: React.FC = () => {
   if (state.error) {
     return <div className="error-message">Error: {state.error}</div>;
   }
-
-  useEffect(() => {
-    document.body.setAttribute("data-theme", theme);
-  }, [theme]);
 
   return (
     <div className="weather-widget" style={{ maxWidth: 800, margin: "0 auto" }}>
