@@ -14,12 +14,12 @@ test("filters cities based on input", async () => {
   );
 
   const input = screen.getByPlaceholderText(/search/i);
-  fireEvent.change(input, { target: { value: "Sam" } });
+  fireEvent.change(input, { target: { value: "London" } });
 
   await act(() => {
     jest.advanceTimersByTime(300);
     return Promise.resolve();
   });
 
-  expect(screen.getByText("Samarkand")).toBeInTheDocument();
+  expect(screen.getByText("London")).toBeInTheDocument();
 });

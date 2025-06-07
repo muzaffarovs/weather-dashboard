@@ -66,9 +66,9 @@ A standalone React application that displays and analyzes weather data across mu
 
 Run unit tests with:
 
-    npm test
+    npx jest -u
     # or
-    yarn test
+    yarn test -u
 
 ## Tests include:
 

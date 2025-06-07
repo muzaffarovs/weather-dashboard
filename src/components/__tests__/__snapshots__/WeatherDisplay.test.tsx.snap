@@ -14,7 +14,7 @@ exports[`WeatherDisplay renders correctly and matches snapshot 1`] = `
       class="weather-main"
     >
       <img
-        alt="Partly cloudy"
+        alt="moderate rain"
         class="weather-icon"
         src="https://openweathermap.org/img/wn/03d@2x.png"
       />
@@ -27,7 +27,7 @@ exports[`WeatherDisplay renders correctly and matches snapshot 1`] = `
           C
         </h1>
         <p>
-          Partly cloudy
+          moderate rain
         </p>
       </div>
     </div>
@@ -47,7 +47,7 @@ exports[`WeatherDisplay renders correctly and matches snapshot 1`] = `
       </p>
       <p>
         Wind: 
-        5.2
+        5
          m/s
       </p>
     </div>

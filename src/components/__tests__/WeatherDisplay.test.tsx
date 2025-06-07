@@ -5,7 +5,7 @@ describe("WeatherDisplay", () => {
   it("renders correctly and matches snapshot", () => {
     const mockData: WeatherData = {
       city: "London",
-      description: "Partly cloudy",
+      description: "moderate rain",
       icon: "03d",
       temperature: 21,
       feelsLike: 20,
